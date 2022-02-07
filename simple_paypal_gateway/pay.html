@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <title>Paypal Gateway</title>
+</head>
+<body>
+  <div id="smart-button-container">
+    <div class="alert alert-success hide" id="alert">
+      
+    </div>
+    <div style="text-align: center; width: fit-content;">
+      <div id="paypal-button-container"></div>
+    </div>
+  </div>
+<script src="https://www.paypal.com/sdk/js?client-id=AUJPHruYtzAaiwErdy0IUUtgf2KvBEd1Ae6yaU_NF4BzMVhBJqyT1zDkAbMg5hNIjbLdpUl-UsvdFZ0d&disable-funding=credit,card&currency=USD" data-sdk-integration-source="button-factory"></script>
+<script>
+  function initPayPalButton() {
+    paypal.Buttons({
+      style: {
+        shape: 'pill',
+        color: 'blue',
+        layout: 'vertical',
+        label: 'paypal',
+        
+      },
+
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{"amount":{"currency_code":"USD","value":100}}]
+        });
+      },
+
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(orderData) {
+          
+          // Full available details
+          console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+
+          // Show a success message within this page, e.g.
+          const element = document.getElementById('alert');
+          element.innerHTML = '';
+          element.classList.remove('hide');
+          element.innerHTML = '<strong>Success!</strong> Your payment was successful.';
+
+          // Or go to another URL:  actions.redirect('success.html');
+          
+        });
+      },
+
+      onError: function(err) {
+        console.log(err);
+      }
+    }).render('#paypal-button-container');
+  }
+  initPayPalButton();
+</script>
+</body>
+</html>
