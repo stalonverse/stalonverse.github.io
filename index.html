@@ -5,17 +5,40 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
   <title>Paypal Gateway</title>
 </head>
 <body>
-  <div id="smart-button-container">
-    <div class="alert alert-success hide" id="alert">
-      
+  <div class="alert alert-success hide" id="alert">
+        
+  </div>
+  <div class="container d-flex justify-content-center" style="padding-top: 50px;">
+    <div class="card mt-5 p-4 text-white" style="width: 100%;">
+        <p class="top mb-1" style="text-align: center; font-size: xx-large; font-weight: bold;">You need to pay</p>
+        <div class="d-flex flex-row justify-content-between text-align-center xyz">
+            <h2 style="padding-left: 30px;"><i class="fas fa-dollar-sign"></i><span>100</span></h2>
+            <div class="discount"><span>32% OFF</span></div>
+        </div>
+        <div class="card-content mt-4" style="padding-bottom: 15px; padding-left: 15px; font-size: 14px;">
+            <p style="padding-top: 5px; font-size: 14px;">Once you complete the payment, you can request for another service!</p>
+            <p style="padding-top: 5px; font-size: 14px;">You can pay with your paypal account.</p>
+            <p style="padding-top: 5px; font-size: 14px;">click the link below to complete the payment.</p>
+
+        </div>
     </div>
-    <div style="text-align: center; width: fit-content;">
+</div>
+  <div id="smart-button-container">
+        
+    <div style="text-align: center;">
       <div id="paypal-button-container"></div>
     </div>
   </div>
+
 <script src="https://www.paypal.com/sdk/js?client-id=AUJPHruYtzAaiwErdy0IUUtgf2KvBEd1Ae6yaU_NF4BzMVhBJqyT1zDkAbMg5hNIjbLdpUl-UsvdFZ0d&disable-funding=credit,card&currency=USD" data-sdk-integration-source="button-factory"></script>
 <script>
   function initPayPalButton() {
